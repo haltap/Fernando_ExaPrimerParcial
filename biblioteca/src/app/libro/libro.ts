@@ -16,7 +16,7 @@ autor:string;
 })
 
 export class LibroComponent {
-  libros: Libro[]=[];
+libros: Libro[]=[];
 
 nombre = '';
 autor = '';
@@ -40,17 +40,46 @@ constructor(private router: Router){
     return;
   }
 
-  guardar(){}
+  guardar(){
+if(this.nombre.trim() === '' || this.autor.trim() === ''){
+  alert('Campos Vacios');
+  return;
+}
+
+if(this.indiceEditar === -1){
+ let nuevoId = 1;
+ for(const libro of this.libros){
+  if(libro.id >= nuevoId)
+  {
+    nuevoId = libro.id + 1;
+  }
+ }
+
+ const nuevoLibro: Libro =  {
+  id:nuevoId,
+  nombre: this.nombre.trim(),
+  autor: this.autor.trim(),
+ }
+
+ this.libros.push(nuevoLibro);
+
+}else{
+  this.libros[this.indiceEditar].nombre = this.nombre.trim();
+  this.libros[this.indiceEditar].autor = this.autor.trim();
+}
+this.guardarLocalStorage();
+this.limpiar();
+  }
 
   editar(indice:number){
     this.indiceEditar = indice;
     this.nombre = this.libros[indice].nombre;
-    this.nombre = this.libros[indice].autor;
-
-
+    this.autor = this.libros[indice].autor;
   }
 
-  eliminar(indice:number){}
+  eliminar(indice:number){
+
+  }
 
   limpiar(){
     this.nombre = '';
