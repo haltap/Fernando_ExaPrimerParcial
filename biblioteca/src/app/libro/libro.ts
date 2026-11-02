@@ -42,11 +42,23 @@ constructor(private router: Router){
 
   guardar(){}
 
-  editar(){}
+  editar(indice:number){
+    this.indiceEditar = indice;
+    this.nombre = this.libros[indice].nombre;
+    this.nombre = this.libros[indice].autor;
 
-  eliminar(){}
 
-  limpiar(){}
+  }
+
+  eliminar(indice:number){}
+
+  limpiar(){
+    this.nombre = '';
+    this.autor = '';
+    this.indiceEditar = -1;
+
+
+  }
 
   guardarLocalStorage(){
     localStorage.setItem('librosBasico', JSON.stringify(this.libros));
