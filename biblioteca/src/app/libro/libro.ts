@@ -78,7 +78,9 @@ this.limpiar();
   }
 
   eliminar(indice:number){
-
+    if(confirm('¿seguro? Lo implementa usted Ing')){
+      
+    }
   }
 
   limpiar(){
